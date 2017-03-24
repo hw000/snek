@@ -6,8 +6,7 @@
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-
-const int SCREEN_FPS = 10;
+const int SCREEN_FPS = 16;
 const int SCREEN_TICKS_PER_FRAME = 1000/SCREEN_FPS;
 
 
@@ -93,7 +92,7 @@ public:
         this->dy = 0*scl; 
         this->width = 1*scl;
         this->height = 1*scl;
-    }
+    };
     ~Snek();
     void draw(){
         // head
@@ -107,18 +106,17 @@ public:
                  
         }
 
-    }
+    };
 
-    int getX(){return this->x;}
+    int getX(){return this->x;};
 
-    int getY(){return this->y;}
+    int getY(){return this->y;};
 
-    void setX(int x){this->x = x;}
+    void setX(int x){this->x = x;};
 
-    void setY(int y){this->y = y;}
+    void setY(int y){this->y = y;};
 
     void eat(){
-        // std::out<<"snek x: "<<this->x<<" snek y: "<<this->y<<std::endl;
         if(this->tail.empty()){
             struct segment tmp;
             tmp.x = this->x;
@@ -132,7 +130,6 @@ public:
             tmp.scl = (this->tail.back()).scl;
             this->tail.push_back(tmp);
         }
-        //std::cout<<tail.size()<<std::endl;
     };
 
     void update(){
@@ -150,17 +147,14 @@ public:
         y+=dy;
         if((this->x<0 || this->x>SCREEN_WIDTH-this->width) ||
            (this->y<0 || this->y >SCREEN_HEIGHT-this->height) ){
-            //dx = 0;
+            
             tail.clear();
             this->x = SCREEN_WIDTH/2;
             this->y = SCREEN_HEIGHT/2;
             this->dx = scl;
             this->dy = 0;
         }
-        //if(this->y<=0 || this->y >=SCREEN_HEIGHT-this->height ){
-        //    dy = 0;
-        //    tail.clear();
-        //}
+        
         // check if hit self
         for(int i=0;i<tail.size();++i){
             if(tail[i].x== this->x && tail[i].y == this->y){
@@ -173,14 +167,6 @@ public:
 
             }
         }
-        //std::cout<<"snek x: "<<this->x<<" snek y: "<<this->y<<std::endl;
-        // check for collision and call eat
-        // scan through update position
-        // might be able to remove dydx from segment struct
-        //if(!this->tail.empty()){
-        //    tail[0].x = this->x;
-        //    tail[0].y = this->y;
-        //}
         
     }
 
