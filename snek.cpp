@@ -41,7 +41,7 @@ public:
             mStartTicks = 0;
         }
     };
-    void unause(){
+    void unpause(){
         if(mStarted && mPaused){
             mPaused = false;
             mStartTicks = SDL_GetTicks() - mPausedTicks;
